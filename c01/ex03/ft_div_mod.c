@@ -1,37 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_div_mod.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnho <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/03 18:03:17 by jnho              #+#    #+#             */
-/*   Updated: 2022/09/08 10:20:59 by jnho             ###   ########.fr       */
+/*   Created: 2022/08/25 21:19:07 by jnho              #+#    #+#             */
+/*   Updated: 2022/08/25 21:26:58 by jnho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <unistd.h>
-#include <stdlib.h>
+#include<unistd.h>
 
-char	*ft_strdup(char *src)
+void	ft_div_mod(int a, int b, int *div, int *mod)
 {
-	char	*dest;
-	int		src_len;
-	int		cpy_idx;
-
-	if (!src)
-		return (NULL);
-	src_len = 0;
-	while (src[src_len])
-		src_len++;
-	dest = (char *)malloc(sizeof(char) * (src_len + 1));
-	if (!dest)
-		return (NULL);
-	cpy_idx = 0;
-	while (src[cpy_idx])
-	{
-		dest[cpy_idx] = src[cpy_idx];
-		cpy_idx++;
-	}
-	dest[cpy_idx] = '\0';
-	return (dest);
+	*div = a / b;
+	*mod = a % b;
 }

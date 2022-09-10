@@ -1,37 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_rev_int_tab.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnho <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/03 18:03:17 by jnho              #+#    #+#             */
-/*   Updated: 2022/09/08 10:20:59 by jnho             ###   ########.fr       */
+/*   Created: 2022/08/25 22:24:20 by jnho              #+#    #+#             */
+/*   Updated: 2022/08/28 11:28:21 by jnho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
-#include <stdlib.h>
 
-char	*ft_strdup(char *src)
+void	ft_rev_int_tab(int *tab, int size)
 {
-	char	*dest;
-	int		src_len;
-	int		cpy_idx;
+	int	idx;
+	int	not_reversed;
+	int	buff;
 
-	if (!src)
-		return (NULL);
-	src_len = 0;
-	while (src[src_len])
-		src_len++;
-	dest = (char *)malloc(sizeof(char) * (src_len + 1));
-	if (!dest)
-		return (NULL);
-	cpy_idx = 0;
-	while (src[cpy_idx])
+	not_reversed = size - 1;
+	if (not_reversed < 0)
 	{
-		dest[cpy_idx] = src[cpy_idx];
-		cpy_idx++;
+		return ;
 	}
-	dest[cpy_idx] = '\0';
-	return (dest);
+	while (not_reversed)
+	{
+		idx = 0;
+		while (idx < not_reversed)
+		{
+			buff = tab[idx];
+			tab[idx] = tab[idx + 1];
+			tab[idx + 1] = buff;
+			idx++;
+		}
+		not_reversed--;
+	}
 }

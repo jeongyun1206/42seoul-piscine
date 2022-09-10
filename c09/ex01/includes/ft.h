@@ -1,37 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnho <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/03 18:03:17 by jnho              #+#    #+#             */
-/*   Updated: 2022/09/08 10:20:59 by jnho             ###   ########.fr       */
+/*   Created: 2022/09/07 20:00:06 by jnho              #+#    #+#             */
+/*   Updated: 2022/09/07 21:27:29 by jnho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <unistd.h>
-#include <stdlib.h>
+#ifndef FT_H
+# define FT_H
 
-char	*ft_strdup(char *src)
-{
-	char	*dest;
-	int		src_len;
-	int		cpy_idx;
+void	ft_putchar(char c);
+void	ft_swap(int *a, int *b);
+void	ft_putstr(char *str);
+int		ft_strlen(char *str);
+int		ft_strcmp(char *s1, char *s2);
 
-	if (!src)
-		return (NULL);
-	src_len = 0;
-	while (src[src_len])
-		src_len++;
-	dest = (char *)malloc(sizeof(char) * (src_len + 1));
-	if (!dest)
-		return (NULL);
-	cpy_idx = 0;
-	while (src[cpy_idx])
-	{
-		dest[cpy_idx] = src[cpy_idx];
-		cpy_idx++;
-	}
-	dest[cpy_idx] = '\0';
-	return (dest);
-}
+#endif

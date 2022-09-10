@@ -6,24 +6,38 @@
 /*   By: jnho <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 14:43:58 by jnho              #+#    #+#             */
-/*   Updated: 2022/09/03 11:27:30 by jnho             ###   ########.fr       */
+/*   Updated: 2022/09/06 17:54:38 by jnho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+int	ft_sqrt_num(int nb)
+{
+	int	sqrt;
+
+	sqrt = 1;
+	while (sqrt < nb)
+	{
+		if (nb / sqrt <= sqrt)
+			return (sqrt);
+		sqrt++;
+	}
+	return (0);
+}
 
 int	ft_is_prime(int nb)
 {
 	int	i;
-	int	prime;
+	int	sqrt_num;
 
-	if (nb == 0)
+	if (nb <= 0)
 		return (0);
 	if (nb == 1)
 		return (0);
 	i = 2;
-	while (i < nb)
+	sqrt_num = ft_sqrt_num(nb);
+	while (i <= sqrt_num)
 	{
-		prime = nb / i;
-		if (prime * i == nb)
+		if (nb % i == 0)
 			return (0);
 		i++;
 	}

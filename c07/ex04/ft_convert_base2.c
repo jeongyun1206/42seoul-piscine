@@ -6,7 +6,7 @@
 /*   By: jnho <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 17:10:08 by jnho              #+#    #+#             */
-/*   Updated: 2022/09/07 18:05:28 by jnho             ###   ########.fr       */
+/*   Updated: 2022/09/10 00:39:14 by jnho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
@@ -15,22 +15,19 @@ int	ft_atoi_base(char *str, char *base);
 
 int	ft_base_confirm(char *base);
 
-char	*malloc_rtn_nbr(int nbr_to_int, int base_to_len, char *base_to)
+char	*malloc_rtn_nbr(int nbr_to_int, int base_to_len)
 {
 	char	*rtn_nbr;
 	int		rtn_nbr_len;
 	int		sign;
 
 	if (nbr_to_int == 0)
-		rtn_nbr = (char *)malloc(sizeof(char) * 1);
+		rtn_nbr = (char *)malloc(sizeof(char) * 2);
 	if (nbr_to_int == 0 && !rtn_nbr)
 		return (0);
 	sign = 0;
 	if (nbr_to_int < 0)
-	{
-		nbr_to_int *= -1;
 		sign = 1;
-	}
 	rtn_nbr_len = 0;
 	while (nbr_to_int)
 	{
@@ -48,6 +45,8 @@ int	ft_rtn_len(int base_to_len, int nbr_to_int)
 	int	rtn_nbr_len;
 
 	rtn_nbr_len = 0;
+	if (nbr_to_int == 0)
+		return (1);
 	while (nbr_to_int)
 	{
 		rtn_nbr_len++;
@@ -58,29 +57,30 @@ int	ft_rtn_len(int base_to_len, int nbr_to_int)
 
 void	ft_nbr_to_base(int nbr_to_int, char *base_to, char *rtn_nbr)
 {
-	int	rtn_nbr_idx;
+	int	rtn_idx;
 	int	base_len;
-	int	rtn_nbr_len;
+	int	rtn_len;
 
 	base_len = 0;
 	while (base_to[base_len])
 		base_len++;
-	rtn_nbr_len = ft_rtn_len(base_len, nbr_to_int);
-	rtn_nbr_idx = 0;
+	rtn_len = ft_rtn_len(base_len, nbr_to_int);
+	rtn_idx = 0;
 	if (nbr_to_int < 0)
 	{
-		rtn_nbr[rtn_nbr_idx] = '-';
-		nbr_to_int *= -1;
-		rtn_nbr_len++;
+		rtn_nbr[rtn_idx] = '-';
+		rtn_len++;
 	}
 	if (nbr_to_int == 0)
-		rtn_nbr[rtn_nbr_idx] = base_to[0];
-	rtn_nbr[rtn_nbr_len] = '\0';
-	while (nbr_to_int)
+		rtn_nbr[rtn_idx] = base_to[0];
+	rtn_nbr[rtn_len] = '\0';
+	while (nbr_to_int && ++rtn_idx)
 	{
-		rtn_nbr[rtn_nbr_len - rtn_nbr_idx - 1] = base_to[nbr_to_int % base_len];
+		if (nbr_to_int < 0)
+			rtn_nbr[rtn_len - rtn_idx] = base_to[-1 * (nbr_to_int % base_len)];
+		else
+			rtn_nbr[rtn_len - rtn_idx] = base_to[nbr_to_int % base_len];
 		nbr_to_int /= base_len;
-		rtn_nbr_idx++;
 	}
 }
 
@@ -90,14 +90,13 @@ char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 	char	*rtn_nbr;
 	int		base_to_len;
 
-	nbr_to_int = ft_atoi_base(nbr, base_from);
-	if (nbr_to_int == -1 || ft_base_confirm(base_to) < 2)
+	if (!base_from || !base_to)
 		return (NULL);
-	base_to_len = 0;
-	while (base_to[++base_to_len])
-	{
-	}
-	rtn_nbr = malloc_rtn_nbr(nbr_to_int, base_to_len, base_to);
+	nbr_to_int = ft_atoi_base(nbr, base_from);
+	base_to_len = ft_base_confirm(base_to);
+	if (nbr_to_int == -1 || base_to_len < 2)
+		return (NULL);
+	rtn_nbr = malloc_rtn_nbr(nbr_to_int, base_to_len);
 	if (!rtn_nbr)
 		return (0);
 	ft_nbr_to_base(nbr_to_int, base_to, rtn_nbr);

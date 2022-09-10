@@ -1,37 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnho <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/03 18:03:17 by jnho              #+#    #+#             */
-/*   Updated: 2022/09/08 10:20:59 by jnho             ###   ########.fr       */
+/*   Created: 2022/08/29 10:46:42 by jnho              #+#    #+#             */
+/*   Updated: 2022/08/29 16:03:18 by jnho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <unistd.h>
-#include <stdlib.h>
 
-char	*ft_strdup(char *src)
+int	ft_strcmp(char *s1, char *s2)
 {
-	char	*dest;
-	int		src_len;
-	int		cpy_idx;
+	int	idx;
 
-	if (!src)
-		return (NULL);
-	src_len = 0;
-	while (src[src_len])
-		src_len++;
-	dest = (char *)malloc(sizeof(char) * (src_len + 1));
-	if (!dest)
-		return (NULL);
-	cpy_idx = 0;
-	while (src[cpy_idx])
+	idx = 0;
+	while (1)
 	{
-		dest[cpy_idx] = src[cpy_idx];
-		cpy_idx++;
+		if ((s1[idx] == '\0') && (s2[idx] == '\0'))
+			return (0);
+		else if (s1[idx] != s2[idx])
+			return (s1[idx] - s2[idx]);
+		idx++;
 	}
-	dest[cpy_idx] = '\0';
-	return (dest);
 }

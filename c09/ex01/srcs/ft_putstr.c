@@ -1,37 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnho <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/03 18:03:17 by jnho              #+#    #+#             */
-/*   Updated: 2022/09/08 10:20:59 by jnho             ###   ########.fr       */
+/*   Created: 2022/08/25 22:02:30 by jnho              #+#    #+#             */
+/*   Updated: 2022/08/25 22:10:41 by jnho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include <unistd.h>
-#include <stdlib.h>
 
-char	*ft_strdup(char *src)
+void	ft_putstr(char	*str)
 {
-	char	*dest;
-	int		src_len;
-	int		cpy_idx;
+	int	idx;
 
-	if (!src)
-		return (NULL);
-	src_len = 0;
-	while (src[src_len])
-		src_len++;
-	dest = (char *)malloc(sizeof(char) * (src_len + 1));
-	if (!dest)
-		return (NULL);
-	cpy_idx = 0;
-	while (src[cpy_idx])
+	idx = 0;
+	while (str [idx])
 	{
-		dest[cpy_idx] = src[cpy_idx];
-		cpy_idx++;
+		write(1, str + idx, 1);
+		idx++;
 	}
-	dest[cpy_idx] = '\0';
-	return (dest);
 }

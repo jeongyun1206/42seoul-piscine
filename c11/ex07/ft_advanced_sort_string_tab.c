@@ -1,37 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_advanced_sort_string_tab.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnho <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/03 18:03:17 by jnho              #+#    #+#             */
-/*   Updated: 2022/09/08 10:20:59 by jnho             ###   ########.fr       */
+/*   Created: 2022/09/09 19:35:18 by jnho              #+#    #+#             */
+/*   Updated: 2022/09/09 19:48:08 by jnho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <unistd.h>
-#include <stdlib.h>
 
-char	*ft_strdup(char *src)
+void	ft_advanced_sort_string_tab(char **tab, int (*cmp)(char *, char *))
 {
-	char	*dest;
-	int		src_len;
-	int		cpy_idx;
+	int		tab_idx;
+	int		tab_len;
+	char	*tmp;
 
-	if (!src)
-		return (NULL);
-	src_len = 0;
-	while (src[src_len])
-		src_len++;
-	dest = (char *)malloc(sizeof(char) * (src_len + 1));
-	if (!dest)
-		return (NULL);
-	cpy_idx = 0;
-	while (src[cpy_idx])
+	tab_len = 0;
+	while (tab[tab_len])
+		tab_len++;
+	while (tab_len - 1)
 	{
-		dest[cpy_idx] = src[cpy_idx];
-		cpy_idx++;
+		while (tab_idx < tab_len - 1)
+		{
+			if (cmp(tab[tab_idx], tab[tab_idx + 1]))
+			{
+				tmp = tab[tab_idx];
+				tab[tab_idx] = tab[tab_idx + 1];
+				tab[tab_idx + 1] = tmp;
+			}
+			tab_idx++;
+		}
+		tab_len--;
 	}
-	dest[cpy_idx] = '\0';
-	return (dest);
 }

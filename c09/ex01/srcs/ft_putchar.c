@@ -1,29 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sqrt.c                                          :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jnho <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: jnho <jnho@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/01 14:41:44 by jnho              #+#    #+#             */
-/*   Updated: 2022/09/07 13:41:55 by jnho             ###   ########.fr       */
+/*   Created: 2022/08/25 11:06:07 by jnho              #+#    #+#             */
+/*   Updated: 2022/08/25 18:09:03 by jnho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <unistd.h>
 
-int	ft_sqrt(int nb)
+void	ft_putchar(char c)
 {
-	int	sqrt;
-
-	if (nb <= 0)
-		return (0);
-	if (nb == 1)
-		return (1);
-	sqrt = 1;
-	while (sqrt <= nb / sqrt)
-	{
-		if (nb / sqrt == sqrt && nb % sqrt == 0)
-			return (sqrt);
-		sqrt++;
-	}
-	return (0);
+	write(1, &c, 1);
 }

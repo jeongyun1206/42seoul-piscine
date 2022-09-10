@@ -6,7 +6,7 @@
 /*   By: jnho <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:18:53 by jnho              #+#    #+#             */
-/*   Updated: 2022/09/07 17:27:54 by jnho             ###   ########.fr       */
+/*   Updated: 2022/09/10 00:37:20 by jnho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
@@ -14,9 +14,9 @@
 
 int	*function_range(int min, int max)
 {
-	int	gap;
-	int	*range_arr;
-	int	arr_idx;
+	long long	gap;
+	int			*range_arr;
+	int			arr_idx;
 
 	if (min >= max)
 		return (0);
@@ -41,13 +41,11 @@ int	ft_ultimate_range(int **range, int min, int max)
 		*range = NULL;
 		return (0);
 	}
-	else if (!function_range(min, max))
-	{
-		return (-1);
-	}
 	else
 	{
 		*range = function_range(min, max);
+		if (!*range)
+			return (-1);
 		return (max - min);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: jnho <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:11:45 by jnho              #+#    #+#             */
-/*   Updated: 2022/09/07 14:44:38 by jnho             ###   ########.fr       */
+/*   Updated: 2022/09/10 00:36:59 by jnho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -14,9 +14,9 @@
 
 int	*ft_range(int min, int max)
 {
-	int	gap;
-	int	*range_arr;
-	int	arr_idx;
+	long long	gap;
+	int			*range_arr;
+	int			arr_idx;
 
 	if (min >= max)
 		return (NULL);

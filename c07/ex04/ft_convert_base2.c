@@ -6,7 +6,7 @@
 /*   By: jnho <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 17:10:08 by jnho              #+#    #+#             */
-/*   Updated: 2022/09/10 00:39:14 by jnho             ###   ########.fr       */
+/*   Updated: 2022/09/10 14:21:16 by jnho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
@@ -89,12 +89,14 @@ char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 	int		nbr_to_int;
 	char	*rtn_nbr;
 	int		base_to_len;
+	int		base_from_len;
 
 	if (!base_from || !base_to)
 		return (NULL);
 	nbr_to_int = ft_atoi_base(nbr, base_from);
 	base_to_len = ft_base_confirm(base_to);
-	if (nbr_to_int == -1 || base_to_len < 2)
+	base_from_len = ft_base_confirm(base_from);
+	if (base_from_len < 2 || base_to_len < 2)
 		return (NULL);
 	rtn_nbr = malloc_rtn_nbr(nbr_to_int, base_to_len);
 	if (!rtn_nbr)

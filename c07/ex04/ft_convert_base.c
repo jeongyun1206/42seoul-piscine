@@ -6,7 +6,7 @@
 /*   By: jnho <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 17:10:06 by jnho              #+#    #+#             */
-/*   Updated: 2022/09/08 11:16:28 by jnho             ###   ########.fr       */
+/*   Updated: 2022/09/10 14:20:54 by jnho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,13 +98,9 @@ int	ft_atoi_base(char *str, char *base)
 	int	rtn_num;
 
 	base_len = ft_base_confirm(base);
-	if (base_len < 2)
-		return (-1);
 	str_idx = 0;
 	sign_flag = ft_sign_flag(str, &str_idx);
 	rtn_num = 0;
-	if (string_in_base(str[str_idx], base) && str[str_idx])
-		return (-1);
 	while (str[str_idx])
 	{
 		if (string_in_base(str[str_idx], base))

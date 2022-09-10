@@ -6,11 +6,13 @@
 /*   By: jnho <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 20:12:26 by jnho              #+#    #+#             */
-/*   Updated: 2022/09/09 20:14:05 by jnho             ###   ########.fr       */
+/*   Updated: 2022/09/10 15:07:25 by jnho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include <unistd.h>
+#include <stdio.h>
+void	set_cal_function(int (*f[5])(int, int));
+int		ft_strlen(char *str);
 
 void	ft_prt_int(char *num_arr, int nb)
 {
@@ -50,6 +52,7 @@ void	ft_putnbr(int nb)
 		nb *= -1;
 	}
 	ft_prt_int(num_arr, nb);
+	write(1, "\n", 1);
 }
 
 int	ft_sign_flag(char *str, int *str_idx)
@@ -98,27 +101,34 @@ int	ft_atoi(char *str)
 
 int	 main(int argc, char **argv)
 {
-	int	(*f)(int, int)[5];
+	int	(*f[5])(int, int);
 	int	rtn_num;
 
 	set_cal_function(f);
 	rtn_num = 0;
 	if (argc != 4)
 	{
+		printf("check\n");
 		write(1, "0\n", 2);
 		return (0);
 	}
 	if (argv[2][0] == '+')
 		rtn_num = f[0](ft_atoi(argv[1]), ft_atoi(argv[3]));
-	else if (argv[2][0] == '-' && strlen(argv[2]) == 1)
+	else if (argv[2][0] == '-' && ft_strlen(argv[2]) == 1)
 		rtn_num = f[1](ft_atoi(argv[1]), ft_atoi(argv[3]));
-	else if (argv[2][0] == '/' && strlen(argv[2]) == 1)
+	else if (argv[2][0] == '/' && ft_strlen(argv[2]) == 1)
 		rtn_num = f[2](ft_atoi(argv[1]), ft_atoi(argv[3]));
-	else if (argv[2][0] == '*' && strlen(argv[2]) == 1)
+	else if (argv[2][0] == '*' && ft_strlen(argv[2]) == 1)
+	{
+		printf("check\n");
 		rtn_num = f[3](ft_atoi(argv[1]), ft_atoi(argv[3]));
-	else if (argv[2][0] == '%' && strlen(argv[2]) == 1)
+	}
+	else if (argv[2][0] == '%' && ft_strlen(argv[2]) == 1)
 		rtn_num = f[4](ft_atoi(argv[1]), ft_atoi(argv[3]));
 	else
+	{
+		printf("operator_error\n");
 		write(1, "0\n", 2);
+	}
 	return (rtn_num);
 }

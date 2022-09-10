@@ -6,7 +6,7 @@
 /*   By: jnho <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 12:22:15 by jnho              #+#    #+#             */
-/*   Updated: 2022/09/10 07:33:43 by jnho             ###   ########.fr       */
+/*   Updated: 2022/09/10 13:52:47 by jnho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
@@ -84,6 +84,6 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 	if (!rtn_str)
 		return (0);
 	fill_rtn_str(size, strs, sep, rtn_str);
-	rtn_str[total_len + 1] = '\0';
+	rtn_str[total_len] = '\0';
 	return (rtn_str);
 }

@@ -6,7 +6,7 @@
 /*   By: jnho <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 19:58:45 by jnho              #+#    #+#             */
-/*   Updated: 2022/09/08 20:12:11 by jnho             ###   ########.fr       */
+/*   Updated: 2022/09/11 19:32:32 by jnho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	ft_sort_string_tab(char **tab)
 	int		not_sorted;
 	char	*buff;
 
+	not_sorted = 0;
 	while (tab[not_sorted])
 		not_sorted++;
 	not_sorted--;

@@ -6,7 +6,7 @@
 /*   By: jnho <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 17:10:08 by jnho              #+#    #+#             */
-/*   Updated: 2022/09/10 14:21:16 by jnho             ###   ########.fr       */
+/*   Updated: 2022/09/10 17:10:52 by jnho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
@@ -103,4 +103,5 @@ char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 		return (0);
 	ft_nbr_to_base(nbr_to_int, base_to, rtn_nbr);
 	return (rtn_nbr);
+	
 }

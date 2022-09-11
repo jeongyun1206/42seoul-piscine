@@ -6,11 +6,11 @@
 /*   By: jnho <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 19:35:59 by jnho              #+#    #+#             */
-/*   Updated: 2022/09/08 19:37:39 by jnho             ###   ########.fr       */
+/*   Updated: 2022/09/11 19:20:29 by jnho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	if_count_if(char **tab, int length, int (*f)(char *))
+int	ft_count_if(char **tab, int length, int (*f)(char *))
 {
 	int	idx;
 	int	rtn_cnt;

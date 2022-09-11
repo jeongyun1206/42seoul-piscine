@@ -6,31 +6,49 @@
 /*   By: jnho <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 19:35:18 by jnho              #+#    #+#             */
-/*   Updated: 2022/09/09 19:48:08 by jnho             ###   ########.fr       */
+/*   Updated: 2022/09/11 19:37:14 by jnho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+int	ft_strcmp(char *s1, char *s2)
+{
+	int	idx;
+
+	idx = 0;
+	while (1)
+	{
+		if ((s1[idx] == '\0') && (s2[idx] == '\0'))
+			return (0);
+		else if (s1[idx] != s2[idx])
+			return (s1[idx] - s2[idx]);
+		idx++;
+	}
+}
 
 void	ft_advanced_sort_string_tab(char **tab, int (*cmp)(char *, char *))
 {
-	int		tab_idx;
-	int		tab_len;
-	char	*tmp;
+	int		idx;
+	int		not_sorted;
+	char	*buff;
 
-	tab_len = 0;
-	while (tab[tab_len])
-		tab_len++;
-	while (tab_len - 1)
+	not_sorted = 0;
+	while (tab[not_sorted])
+		not_sorted++;
+	not_sorted--;
+	if (not_sorted < 1)
+		return ;
+	while (not_sorted)
 	{
-		while (tab_idx < tab_len - 1)
+		idx = 0;
+		while (idx < not_sorted)
 		{
-			if (cmp(tab[tab_idx], tab[tab_idx + 1]))
+			if (cmp(tab[idx], tab[idx + 1]) > 0)
 			{
-				tmp = tab[tab_idx];
-				tab[tab_idx] = tab[tab_idx + 1];
-				tab[tab_idx + 1] = tmp;
+				buff = tab[idx];
+				tab[idx] = tab[idx + 1];
+				tab[idx + 1] = buff;
 			}
-			tab_idx++;
+			idx++;
 		}
-		tab_len--;
+		not_sorted--;
 	}
 }

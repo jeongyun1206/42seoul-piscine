@@ -1,14 +1,20 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-TARGET = ./root/libft.a
-OBJS = ft_putchar.o ft_swap.o ft_putstr.o ft_strlen.o ft_strcmp.o
-SRCS = ./srcs/ft_putchar.o ./srcs/ft_swap.o ./srcs/ft_putstr.o ./srcs/ft_strlen.o ./srcs/ft_strcmp.o
-HEADER = includes/ft.h
+NAME = libft.a
+OBJS = $(SRCS:.c=.o)
+SRCS = srcs/ft_putchar.c srcs/ft_swap.c srcs/ft_putstr.c srcs/ft_strlen.c srcs/ft_strcmp.c
+HEADER = includes
 
-$(TARGET) : $(OBJS)
-	ac -rc $@ $(OBJS)
+all : $(NAME)
 
-$(OBJS) : $(SRCS)
-	$(CC) -c $(CFLAGS) -I $(HEADER) $(SRCS)
+$(NAME) : $(OBJS)
+	ar -rc $@ $(OBJS)
+%.o : %.c
+	$(CC) $(CFLAGS) -c $< -o $@ -I $(HEADER)
 
-all : $(TARGET)
+re : fclean all
+
+clean :
+	rm -f $(OBJS)
+fclean : clean
+	rm -f $(NAME)

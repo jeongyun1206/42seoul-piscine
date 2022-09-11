@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnho <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/25 22:11:34 by jnho              #+#    #+#             */
-/*   Updated: 2022/08/25 22:20:35 by jnho             ###   ########.fr       */
+/*   Created: 2022/09/11 16:56:17 by jnho              #+#    #+#             */
+/*   Updated: 2022/09/11 17:00:43 by jnho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <unistd.h>
 
-int	ft_strlen(char	*str)
+int main(int argc, char **argv)
 {
-	int	idx;
-
-	idx = 0;
-	while (str[idx])
-		idx++;
-	return (idx);
+	if (argc == 1)
+		write(1, "File name missing.\n", 19);
+	else if (argc > 2)
+		write(1, "Too many arguments.\n", 20);
 }

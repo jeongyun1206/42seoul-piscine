@@ -1,0 +1,5 @@
+Credentials cache: API:BCE08384-387A-43A3-B6ED-2561408B9665
+        Principal: jnho@42SEOUL.KR
+
+  Issued                Expires             Flags    Principal
+Aug 22 17:42:57 2022  Aug 23 03:42:55 2022  FPIA   krbtgt/42SEOUL.KR@42SEOUL.KR

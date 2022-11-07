@@ -1,17 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prt_square.c                                       :+:      :+:    :+:   */
+/*   dp_prt_square.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnho <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 15:50:45 by jnho              #+#    #+#             */
-/*   Updated: 2022/09/12 20:57:01 by jnho             ###   ########.fr       */
+/*   Updated: 2022/09/14 21:28:57 by jnho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
+#include <stdlib.h>
+#include "ft_bsq.h"
 
-void	find_biggest_square(int **dp_map, int *biggest_info_arr, int *map_info_arr)
+void	find_square(int **dp_map, int *biggest_info_arr, int *map_info_arr)
 {
 	int	row_idx;
 	int	col_idx;
@@ -37,7 +39,7 @@ void	find_biggest_square(int **dp_map, int *biggest_info_arr, int *map_info_arr)
 	biggest_info_arr[2] = biggest_size;
 }
 
-void	fill_biggest_square(char **map, int *biggest_info_arr, int *map_info_arr)
+void	fill_map_square(char **map, int *biggest_info_arr, int *map_info_arr)
 {
 	int	row_idx;
 	int	col_idx;
@@ -82,12 +84,27 @@ void	prt_biggest_square(char **map, int **dp_map, int *map_info_arr)
 {
 	int	biggest_info_arr[3];
 
-	find_biggest_square(dp_map, biggest_info_arr, map_info_arr);
+	find_square(dp_map, biggest_info_arr, map_info_arr);
 	if (biggest_info_arr[2] == 0)
 	{
-		write(1, "map_error\n", 10);
+		prt_map(map, map_info_arr);
 		return ;
 	}
-	fill_biggest_square(map, biggest_info_arr, map_info_arr);
+	fill_map_square(map, biggest_info_arr, map_info_arr);
 	prt_map(map, map_info_arr);
+}
+
+void	free_all_map(char **map, int **dp_map, int *map_info_arr)
+{
+	int	row_idx;
+
+	row_idx = 0;
+	while (row_idx < map_info_arr[0])
+	{
+		free(map[row_idx]);
+		free(dp_map[row_idx]);
+		row_idx++;
+	}
+	free(map);
+	free(dp_map);
 }
